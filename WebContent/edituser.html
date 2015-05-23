@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="US-ASCII">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>EDIT USER </h1>
+<form method="get" action="http://localhost:8080/projecxt/editusers">
+
+<h4>Step0</h4>
+<h4>User info : </h4>
+User name : <input type="text" name="user" id="user"><br>
+Host name : <input type="text" name="host" id="host"><br>
+
+<br>
+
+<h4>Step1</h4>
+<input type="checkbox" name="fieldType" value="grant">Grant&nbsp;
+<input type="checkbox" name="fieldType" value="revoke">Revoke
+<br>
+
+<h4>Step2</h4>
+<h4>Grant Privileges To : </h4>
+<input type="checkbox" name="fieldType" value="all">ALL
+<br><br>
+<input type="checkbox" name="fieldType" value="database">DB
+<input type="text" name="search" id="database"><br>
+<br>
+
+<input type="checkbox" name="fieldType" value="table">Table
+<input type="text" name="search" id="table"><br>
+<br>
+<input type="checkbox" name="fieldType" value="col">Column
+<input type="text" name="search" id="col"><br>
+<br>
+<input type="checkbox" name="fieldType" value="sp">Stored Procedure
+<input type="text" name="search" id="sp"><br>
+<br>
+<h4>Step3</h4>
+<h4>Enter Privileges : </h4>
+<input type="text" name="privs" id="priv"><br>
+<h2>SEARCH</h2>
+<input type="submit">
+</form>
+</body>
+</html>

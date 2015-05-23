@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  
+<link rel="stylesheet" type="text/css" href="design.css">
+<meta charset="UTF-8">
+<title>Search Engine</title>
+<style>
+</style>
+<script>
+function error(){
+ var query = window.location;
+ var x = String(query);
+ 
+ if (x.indexOf("newmovie") > 0)
+ {
+  document.getElementById("error").style.visibility = "initial";   
+ }
+ else{
+   document.getElementById("error").style.visibility = "hidden";   
+ }
+}
+</script>
+
+</head>
+<body onload="error()">
+<div id="fullscreen_bg" class="fullscreen_bg">
+ <div class="container">
+	<form class="form-signin" method="get" action="http://localhost:8080/projecxt/insert">
+	   <h1 class="form-signin-heading text-muted">Movie</h1>
+		<input type="text" class="form-control" placeholder="Title" name = "title">
+		<input type="text" class="form-control" placeholder="Year" name = "year">
+		<input type="text" class="form-control" placeholder="Director" name = "direct">
+		<input type="text" class="form-control" placeholder="Banner url" name = "burl">
+		<input type="text" class="form-control" placeholder="Trailer url" name = "turl">
+	  
+	   <h1 class="form-signin-heading text-muted">Star</h1>
+		<input type="text" class="form-control" placeholder="First Name" name = "fname">
+		<input type="text" class="form-control" placeholder="Last Name" name = "lname">
+		<input type="text" class="form-control" placeholder="DOB" name = "dob">
+		<input type="text" class="form-control" placeholder="Photo url" name = "purl">
+	
+	   <h1 class="form-signin-heading text-muted">Genres</h1>
+	   <input type="text" class="form-control" placeholder="Genre" name = "genre">			   
+		<button class="btn btn-lg btn-primary btn-block" type="submit">
+			Insert
+		</button>
+		<br><br><br>
+	<div class="alert alert-danger" role="alert" id="error" style="visibility:hidden">
+  		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  		<span class="sr-only">Error:</span>
+  			Enter valid login information
+	</div>
+   </form>
+ </div>
+</div>
+</body>
+</html>

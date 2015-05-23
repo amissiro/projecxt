@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="US-ASCII">
+<title>Insert title here</title>
+<script>
+function inputCreator(id,value){
+
+ if(document.getElementById(id).checked)
+ {
+  document.getElementById(value).style.visibility = "visible"; 
+  document.getElementById(value).value = "";
+ }
+ else
+ { 
+   document.getElementById(value).style.visibility = "hidden";
+   document.getElementById(value).value = "";
+ }	    
+}
+
+
+//-----SEARCH BAR SCRIPT---
+	function generateAutoComplete() {
+	
+		var words = document.getElementById("searchText").value;
+		var requestToServlet = new XMLHttpRequest();
+		var servletResponse; 
+		
+		requestToServlet.onreadystatechange = function() {	        
+	        if (requestToServlet.readyState == 4) {	        	
+	        		servletResponse = requestToServlet.responseText; 
+	        		//document.getElementById("demo").innerHTML = servletResponse;
+	        		document.getElementById("searchText").value = servletResponse;
+	        }
+    	}		
+
+		requestToServlet.open("POST", "ListMoviesServlet", true);
+		requestToServlet.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		requestToServlet.send("title="+words);
+}
+	  	
+
+</script>
+</head>
+<body>
+
+<!-- SEARCH BAR HTML -->
+	<div class="container">
+		<div class="vertical-center-row" id="divControl">
+			<div align="center">
+               	<h1 id="header">Search your movie</h1>
+					
+
+<!-- 					<form action="http://localhost:8080/projecxt/ListMoviesServlet" method="get">
+ -->						<input type="search" name="title" value="Enter a movie" oninput="generateAutoComplete();" id="searchText">
+						<input type="submit" value="Search">
+					<!-- </form> -->
+	         <p id="demo"></p>
+
+	        </div>
+	    </div>
+	</div>
+
+	<div id="myDiv">
+	</div>
+
+<h2>Please chose the FIELD </h2><br>
+<form method="get" action="http://localhost:8080/projecxt/main">
+<input type="checkbox" name="fieldType" id ="t"value="title" onClick="inputCreator(this.id,this.value)">Title
+<input type="text" name="search" id="title" style = "visibility : hidden"><br>
+<br>
+<input type="checkbox" name="fieldType" id ="di" value="director" onClick="inputCreator(this.id,this.value)">Director
+<input type="text" name="search" id="director" style = "visibility : hidden"><br>
+<br>
+<input type="checkbox" name="fieldType" id ="da" value="year" onClick="inputCreator(this.id,this.value)">Year
+<input type="text" name="search" id="year" style = "visibility : hidden"><br>
+<br>
+<input type="checkbox" name="fieldType" id = "s" value="name" onClick="inputCreator(this.id,this.value)">Star's Name
+<input type="text" name="search" id="name" style = "visibility : hidden"><br>
+<input type="hidden" name="sorted" value="false" /> 
+<input type="hidden" name="order" value="false" /> 
+<input type="hidden" name="limit" value="5" /> 
+<input type="hidden" name="offset" value="0" /> 
+
+<br>
+<h2>SEARCH</h2><br>
+<input type="submit">
+</form>
+
+<form method="get" action="http://localhost:8080/projecxt/ByGenres">
+<h1>SEARCH BY GENRES</h1><br>
+<input type="submit">
+</form>
+<form method="get" action="http://localhost:8080/projecxt/ByTitles">
+<h1>SEARCH BY TITLE</h1><br>
+<input type="submit">
+</form>
+<form method="post" action="http://localhost:8080/projecxt/emplogin">
+<h1>ADD MOVIE</h1><br>
+<input type="submit">
+</form>
+<form method="get" action="http://localhost:8080/projecxt/error_report">
+<h1>GENRATE ERROR REPORT</h1><br>
+<input type="submit">
+</form>
+<form method="get" action="http://localhost:8080/projecxt/UMI">
+<h1>USER MANAGEMENT INTERFACE</h1><br>
+<input type="submit">
+</form>
+</body>
+</html>

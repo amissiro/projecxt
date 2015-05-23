@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  
+<link rel="stylesheet" type="text/css" href="design.css">
+<meta charset="UTF-8">
+<title>Search Engine</title>
+<style>
+
+video{
+   min-width : 100%;
+   min-height : 100%;
+   width:auto;
+   height:auto;
+}
+
+</style>
+<script>
+function error(){
+ var query = window.location;
+ var x = String(query);
+ 
+ if (x.indexOf("?") > 0)
+ {
+  document.getElementById("error").style.visibility = "visible";   
+ }
+ else{
+   document.getElementById("error").style.visibility = "hidden";   
+ }
+}
+</script>
+
+</head>
+<body onload="error()">
+
+<div id="fullscreen_bg" class="fullscreen_bg">
+ <div class="container">
+	<form class="form-signin" method="post" action="http://localhost:8080/projecxt/login">
+		<h1 class="form-signin-heading text-muted">Sign In</h1>
+		<input type="text" class="form-control" placeholder="Username" name = "username">
+		<input type="password" class="form-control" placeholder="Password" name = "psw">
+		<button class="btn btn-lg btn-primary btn-block" type="submit">
+			Sign In
+		</button>
+		<br><br><br>
+	<div class="alert alert-danger" role="alert" id="error" style="visibility:hidden">
+  		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  		<span class="sr-only">Error:</span>
+  			Enter valid login information
+	</div>
+   </form>
+ </div>
+</div>
+</body>
+</html>
