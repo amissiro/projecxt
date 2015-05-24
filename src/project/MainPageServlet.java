@@ -63,16 +63,20 @@ public class MainPageServlet extends HttpServlet {
 		    writer.println("<!DOCTYPE html>");
 	        writer.println("<html>");
 	        writer.println("<head>");
-	        writer.println("<meta name='viewport' content='width=device-width, initial-scale=1'>"
-	        		     + "<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>"
-	        		     + "<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>"
-	        		     + "<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>");
-	        writer.println("<title>Search Output </title>");	        
-	        writer.println("</head>");
-	        writer.println("<h1>Search Result</h1>");   
+	        writer.println("<title>Search Output </title>");
+	        writer.println("<link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'>"
+	        			 + "<script src='//code.jquery.com/jquery-1.10.2.js'></script>"
+	        			 + "<script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>"
+	        			 + "<link rel='stylesheet' href='/resources/demos/style.css'>"
+	        			 + "<script src='ajaxcart.js'></script>");
 	        
+	        writer.println("</head>");
+	        writer.println("<body>");
+	        writer.println("<h1>Search Result</h1>");  
+ 	        writer.println("<a href='cart?name=null&qty=null'><h1>MyCart</h1></a><br>");
+ 	        
 	        String QURL=""; 	
-
+	        
 	        for (int i=0; i < searchFields.length; i++){
 	        	QURL = QURL + "search="+searchFields[i]+"&"+"fieldType="+queryField[i]+"&";
 	        }
@@ -208,9 +212,11 @@ public class MainPageServlet extends HttpServlet {
 	                         + starNames.get(x)
 	                         + "</a>"+" ");	
 	        }
+	        
 	        writer.println("<br>");
-	        writer.println("<a href='cart?name="+parsedOutput[1]+"&qty=1'><button>Add to Cart</button></a>");
-	        writer.println("<hr>");
+//	        writer.println("<a href='cart?name="+parsedOutput[1]+"&qty=1'><button>Add to Cart</button></a>");
+	        writer.println("<button id='opt"+i+"' value='"+parsedOutput[1]+"' onClick='generateAutoComplete(this.id);'>Add to Cart</button></a>"); 
+	        writer.println("<br>");
 	        writer.println("<br><br><br>");
 	        parsedOutput=null;
 	     }

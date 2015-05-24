@@ -3,6 +3,11 @@
 <head>
 <meta charset="US-ASCII">
 <title>Insert title here</title>
+<link rel="stylesheet"
+   href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
 <script>
 function inputCreator(id,value){
 
@@ -20,41 +25,55 @@ function inputCreator(id,value){
 
 
 //-----SEARCH BAR SCRIPT---
-	function generateAutoComplete() {
-	
+
+   
+	function generateAutoComplete() {	
+		
 		var words = document.getElementById("searchText").value;
 		var requestToServlet = new XMLHttpRequest();
 		var servletResponse; 
+		var globalvar;
 		
 		requestToServlet.onreadystatechange = function() {	        
-	        if (requestToServlet.readyState == 4) {	        	
+	        if (requestToServlet.readyState == 4) {	 
+	        	
 	        		servletResponse = requestToServlet.responseText; 
+	        		globalvar = servletResponse.split("@split@");
+	        		
+	        		$(function() {
+	        			
+
+	    			    $( "#searchText" ).autocomplete({
+	    			      source: globalvar
+	    			    });
+	    			  }); 
 	        		//document.getElementById("demo").innerHTML = servletResponse;
-	        		document.getElementById("searchText").value = servletResponse;
+	        		//document.getElementById("searchText").value = servletResponse;
 	        }
     	}		
 
 		requestToServlet.open("POST", "ListMoviesServlet", true);
 		requestToServlet.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		requestToServlet.send("title="+words);
-}
-	  	
-
-</script>
-</head>
+		requestToServlet.send("title="+words); 
+  }
+  </script>
+ </head>
 <body>
 
 <!-- SEARCH BAR HTML -->
 	<div class="container">
 		<div class="vertical-center-row" id="divControl">
 			<div align="center">
-               	<h1 id="header">Search your movie</h1>
-					
-
-<!-- 					<form action="http://localhost:8080/projecxt/ListMoviesServlet" method="get">
- -->						<input type="search" name="title" value="Enter a movie" oninput="generateAutoComplete();" id="searchText">
+               	<h1 id="header">Search your movie</h1>				
+ 					<form action="http://localhost:8080/projecxt/main" method="get">
+ 					    <input type="hidden" name="fieldType" value="title" /> 
+ 						<input type="search" name="search" value="Enter a movie" oninput="generateAutoComplete();" id="searchText">
+ 						<input type="hidden" name="sorted" value="false" /> 
+						<input type="hidden" name="order" value="false" /> 
+						<input type="hidden" name="limit" value="5" /> 
+						<input type="hidden" name="offset" value="0" /> 
 						<input type="submit" value="Search">
-					<!-- </form> -->
+					 </form>
 	         <p id="demo"></p>
 
 	        </div>
@@ -66,7 +85,7 @@ function inputCreator(id,value){
 
 <h2>Please chose the FIELD </h2><br>
 <form method="get" action="http://localhost:8080/projecxt/main">
-<input type="checkbox" name="fieldType" id ="t"value="title" onClick="inputCreator(this.id,this.value)">Title
+<input type="checkbox" name="fieldType" id ="t" value="title" onClick="inputCreator(this.id,this.value)">Title
 <input type="text" name="search" id="title" style = "visibility : hidden"><br>
 <br>
 <input type="checkbox" name="fieldType" id ="di" value="director" onClick="inputCreator(this.id,this.value)">Director

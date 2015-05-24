@@ -1,28 +1,23 @@
 package project;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.DriverManager;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.sql.*; 
-import java.util.ArrayList;
 /**
- * Servlet implementation class ListMoviewsServlet
+ * Servlet implementation class AJAXCartServlet
  */
-@WebServlet("/ListMoviesServlet")
-public class ListMoviesServlet extends HttpServlet {
+@WebServlet("/AJAXCartServlet")
+public class AJAXCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListMoviesServlet() {
+    public AJAXCartServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +26,7 @@ public class ListMoviesServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -39,27 +34,9 @@ public class ListMoviesServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
-		PrintWriter writer = response.getWriter();
-		String htmlinput = request.getParameter("title");
 		
-		try {
-			String str = "";
-			ArrayList<String> lst = JDBCProject.searchTitle(htmlinput);
-			
-			for (String l : lst) {
-				str = str+l+"@split@";
-				//writer.write(l);
-			}
-			
-			writer.write(str);
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
 		
-	
+		
 	}
 
 }
