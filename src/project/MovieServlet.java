@@ -72,16 +72,14 @@ public class MovieServlet extends HttpServlet {
 	        writer.println("<html>");
 	        writer.println("<head>");
 	        writer.println(
-	        		         "<meta name='viewport' content='width=device-width, initial-scale=1'>"
-	        	  	       + "<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>"
-	        		       + "<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>"
-	        		       + "<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script> "
-	        		       + "<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'></script>"
+	        		       "<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'></script>"
 	        		       + "<link rel='stylesheet' type='text/css' href='movies.css'>"
 	        		       + "<script src='movies.js'></script>"
 	        		      );
 	        writer.println("<title>Search Output </title>");
 	        writer.println("</head>");
+	        writer.println("<body>");
+
 	        writer.println("<h1>Moviexxx</h1>");
 	        writer.println("<div class='selector'>"
 	        		+ "<ul>"
@@ -98,7 +96,9 @@ public class MovieServlet extends HttpServlet {
 	        		+ "<label for='c3'></label>"
 	        		+ "</li>"
 	        		+ "</ul>"
-	        		+ "<button></button>"
+	        		+ "<button style='background-image: url('"
+	        		+ banner_url
+	        		+ "')'></button>"
 	        		+ "</div>");
 	        writer.println(
 			        "<div class='container'>"
@@ -137,10 +137,7 @@ public class MovieServlet extends HttpServlet {
         writer.println("<html>");
         writer.println("<head>");
         writer.println(
-		         "<meta name='viewport' content='width=device-width, initial-scale=1'>"
-	  	       + "<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>"
-		       + "<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>"
-		       + "<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'></script>"
+        		 "<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'></script>"
 		       + "<link rel='stylesheet' type='text/css' href='movies.css'>"
 		       + "<script src='movies.js'>"
 		       + "</script>");
@@ -164,7 +161,9 @@ public class MovieServlet extends HttpServlet {
 		        		+ "<label for='c3'></label>"
 		        		+ "</li>"
 		        		+ "</ul>"
-		        		+ "<button></button>"
+		        		+ "<button style='background-image: url('"
+		        		+ banner_url
+		        		+ "')'></button>"
 		        		+ "</div>");
         writer.println(
 				        "<div class='container'>"

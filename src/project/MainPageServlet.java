@@ -68,12 +68,13 @@ public class MainPageServlet extends HttpServlet {
 	        			 + "<script src='//code.jquery.com/jquery-1.10.2.js'></script>"
 	        			 + "<script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>"
 	        			 + "<link rel='stylesheet' href='/resources/demos/style.css'>"
-	        			 + "<script src='ajaxcart.js'></script>");
+	        			 + "<link rel='stylesheet' type='text/css' href='infowin.css'>"
+	        			 + "<script src='ajaxcart.js'></script><script src='infowindow.js'></script>");
 	        
 	        writer.println("</head>");
 	        writer.println("<body>");
 	        writer.println("<h1>Search Result</h1>");  
- 	        writer.println("<a href='cart?name=null&qty=null'><h1>MyCart</h1></a><br>");
+ 	        writer.println("<a href='cart?name=null&qty=null'><h1>MyCart(<span id='total'></span>)</h1></a><br>");
  	        
 	        String QURL=""; 	
 	        
@@ -171,8 +172,25 @@ public class MainPageServlet extends HttpServlet {
      		       + "</div>"
      		      );
 	        
+		    String[] stars = parsedOutput[7].split(",");
+            String starlst="";
+		    for (int t = 0; t < stars.length; t++)
+		    {
+		      if (t%2!=0){
+		   
+		    	  starlst = starlst+stars[t]+",";
+		      }
+		    }
+	        
 		    writer.println(
-		        			"<a href = 'http://localhost:8080/projecxt/movie?"
+		        			"<span id='m"+
+		        			+ i+"' onmouseover='showWindow(this.id);' url='"
+		        		    + parsedOutput[4] + "' title='"
+		        		    + parsedOutput[1] + "' year='"
+		        		    + parsedOutput[2] + "' stars='"
+		        		    + starlst + "'"
+		        			+ " onmouseout='hideWindow(this.id);'"
+		        			+ "><a href = 'http://localhost:8080/projecxt/movie?"
 		        			+ "id="+parsedOutput[0].replaceAll("'", "")
 		        			+ "&title="+parsedOutput[1].replaceAll("'", "")
 		        			+ "&year="+parsedOutput[2].replaceAll("'", "")
@@ -182,7 +200,14 @@ public class MainPageServlet extends HttpServlet {
 		        			+ "&genres="+parsedOutput[6].replaceAll("'", "")
 		        			+ "&stars="+parsedOutput[parsedOutput.length-1].replaceAll("'", "")
 		        			+ "'>"
-		        			+ parsedOutput[1]+"</a><br>"
+		        			+ parsedOutput[1]+"</a></span><br>"
+		        		    + "<div style='display:none;' id='xxm"+i+"'>"
+		      		 	    + "<img src='"+ parsedOutput[4]+"' onerror='this.onerror=null; this.src=\"movies.jpg\"'"
+		     		        + " class='img-circle' width='100' height='110'><br>"
+		     		        + "Title : " + parsedOutput[1]+"<br>"
+		     		        + "Year : "  + parsedOutput[2]+"<br>"
+		     		        + "Star : "  + starlst
+		        			+ "</div>"
 		        		  );
 		    
 		    String[] starsList = parsedOutput[7].split(",");
@@ -214,7 +239,6 @@ public class MainPageServlet extends HttpServlet {
 	        }
 	        
 	        writer.println("<br>");
-//	        writer.println("<a href='cart?name="+parsedOutput[1]+"&qty=1'><button>Add to Cart</button></a>");
 	        writer.println("<button id='opt"+i+"' value='"+parsedOutput[1]+"' onClick='generateAutoComplete(this.id);'>Add to Cart</button></a>"); 
 	        writer.println("<br>");
 	        writer.println("<br><br><br>");

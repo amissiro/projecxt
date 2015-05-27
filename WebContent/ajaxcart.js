@@ -7,11 +7,10 @@ function generateAutoComplete(id) {
 		requestToServlet.onreadystatechange = function() {	        
 	        if (requestToServlet.readyState == 4) {	 
 	        	
-	        	servletResponse = requestToServlet.responseText; 	        		
+	        	servletResponse = requestToServlet.responseText; 
+	        	document.getElementById('total').innerHTML = servletResponse;
 	        }
     	};		
-
-    	alert(word);
 		requestToServlet.open("POST", "CartServlet", true);
 		requestToServlet.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		requestToServlet.send("name="+word+"&qty=1"); 

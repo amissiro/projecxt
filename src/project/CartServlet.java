@@ -57,8 +57,7 @@ public class CartServlet extends HttpServlet {
         		+ "}"
         		+ "</script>");
         writer.println("</head>");
-        //http://localhost:8080/projecxt/checkout?amount=
-
+        writer.println("<body>");
         writer.println("<h1>CART</h1><br><br>");
 
         writer.println("<table style='width:50%'><tr><th>Movie</th><th>Qty</th><th>Total Price </th></tr>");
@@ -86,8 +85,12 @@ public class CartServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String movieName= request.getParameter("name");
 		names.add(movieName);
-		System.out.println(names);
 		PrintWriter writer = response.getWriter();
+		int size = names.size();
+		
+		writer.write(Integer.toString(size));
+		writer.close();
+		
 		writer.println("<!DOCTYPE html>");
         writer.println("<html>");
         writer.println("<head>");
@@ -115,20 +118,20 @@ public class CartServlet extends HttpServlet {
 
         writer.println("<table style='width:50%'><tr><th>Movie</th><th>Qty</th><th>Total Price </th></tr>");
         
-   for (int i=0; i < names.size(); i++){      	    
-        writer.println("<tr>");   
-        writer.println("<td>"+names.get(i)+ "</td>");
-        writer.println("<td><input type='number' id='i"+i+"'></td>");
-        writer.println("<td>9.99</td>");
-        writer.println("</tr>");
-  }
-  
-   writer.println("</table><br><br><br>");
-   writer.println("<center><textarea rows='1' cols='10' style='resize:none; font-size: 12pt' id='output' readonly></textarea>");
-   writer.println("<button onclick='calc("+names.size()+")'>count</button><br><br><br><br><br>");
-   writer.println("<a href = 'javascript:document.location.href=servUrl();'><button style='height:40px; width:200px'>Checkout</button></a></center>");
-   writer.println("</head>");
-   writer.println("</title>");
+		for (int i=0; i < names.size(); i++){      	    
+		        writer.println("<tr>");   
+		        writer.println("<td>"+names.get(i)+ "</td>");
+		        writer.println("<td><input type='number' id='i"+i+"'></td>");
+		        writer.println("<td>9.99</td>");
+		        writer.println("</tr>");
+		}
+		   
+		   writer.println("</table><br><br><br>");
+		   writer.println("<center><textarea rows='1' cols='10' style='resize:none; font-size: 12pt' id='output' readonly></textarea>");
+		   writer.println("<button onclick='calc("+names.size()+")'>count</button><br><br><br><br><br>");
+		   writer.println("<a href = 'javascript:document.location.href=servUrl();'><button style='height:40px; width:200px'>Checkout</button></a></center>");
+		   writer.println("</head>");
+		   writer.println("</title>");
 	
 	}
 
